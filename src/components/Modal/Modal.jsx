@@ -8,16 +8,20 @@ import {
 
 import { Overlay, ModalWindow } from './Modal.styled';
 
-
 export const Modal = ({ toggleModal, largeImageURL, tags }) => {
   let targetElement = document.querySelector('body');
 
   useEffect(() => {
     window.addEventListener('keydown', closeModalByEsc);
-    disableBodyScroll(targetElement);
 
     return () => {
       window.removeEventListener('keydown', closeModalByEsc);
+    };
+  });
+  useEffect(() => {
+    disableBodyScroll(targetElement);
+
+    return () => {
       clearAllBodyScrollLocks();
     };
   });
@@ -37,10 +41,9 @@ export const Modal = ({ toggleModal, largeImageURL, tags }) => {
 
   return (
     <Overlay onClick={closeModalByClick}>
-      {' '}
       <ModalWindow>
-        <img src={largeImageURL} alt={tags} />{' '}
-      </ModalWindow>{' '}
+        <img src={largeImageURL} alt={tags} />
+      </ModalWindow>
     </Overlay>
   );
 };
