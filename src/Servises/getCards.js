@@ -9,8 +9,10 @@ const options = new URLSearchParams({
 });
 
 export const getCards = async (searchText, page) => {
+  const newSearchText = searchText.slice(String(Date.now()).length + 1)
+ console.log(newSearchText)
   const response = await axios.get(
-    `${BASE_URL}?q=${searchText}&page=${page}&${options}`
+    `${BASE_URL}?q=${newSearchText}&page=${page}&${options}`
   );
   const data = response.data;
  return data;

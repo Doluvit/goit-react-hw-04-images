@@ -44,7 +44,7 @@ export const App = () => {
 
   const handleSearch = searchText => {
     if (searchText !== prevSearchTextRef.current) {
-      setSearchText(searchText);
+      setSearchText(`${Date.now()}/${searchText}`);
       setCollection([]);
       setPageNumber(1);
     }
